@@ -7,50 +7,27 @@ public class AvlTree {
     this.root = root;
   }
 
-  public void add(AvlNode node) {
-    if (root == null) {
-      root = node;
-    } else {
-      root.add(node);
-      balance(root);
-    }
-  }
-
-  public void remove(AvlNode node) {
-    if (root == null) {
-      return;
-    } else {
-      root.remove(node);
-    }
-  }
-
   public AvlNode getRoot() {
     return root;
   }
 
-  // Balance the tree with rotates
-  public void balance(AvlNode node) {
-    if (node == null) {
-      return;
-    }
+  public AvlTree add(int data) {
+    root = add(data, root);
+    return this;
+  }
 
-    int balance = node.getBalance();
-    if (balance > 1) {
-      if (node.getRight() != null && node.getRight().getBalance() >= 0) {
-        // Rotate left
-        node.rotateLeft();
-      }
-      // Rotate right then left
-      node.getRight().rotateRight();
-      node.rotateLeft();
-    } else if (balance < -1) {
-      if (node.getLeft() != null && node.getLeft().getBalance() <= 0) {
-        // Rotate right
-        node.rotateRight();
-      }
-      // Rotate left then right
-      node.getLeft().rotateLeft();
-      node.rotateRight();
+  private AvlNode add(int data, AvlNode node) {
+    if (node == null) {
+      return new AvlNode(data);
     }
+    if (data < node.getData()) {
+      node.setLeft(add(data, node.getLeft()));
+    } else if (data > node.getData()) {
+      node.setRight(add(data, node.getRight()));
+    } else {
+      return node;
+    }
+    updateHeight(node);
+    return rotate(node);
   }
 }
