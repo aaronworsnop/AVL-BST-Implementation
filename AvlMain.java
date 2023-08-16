@@ -27,6 +27,7 @@ public class AvlMain {
     tree.add(nodeVal16);
 
     System.out.println("Height of root: " + root.getHeight());
-    System.out.println(tree.getRoot().getKey());
+    System.out.println("Root key: " + tree.getRoot().getKey());
+    System.out.println("Root balance: " + tree.getRoot().getBalance());
   }
 }

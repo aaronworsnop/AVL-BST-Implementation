@@ -12,7 +12,7 @@ public class AvlTree {
       root = node;
     } else {
       root.add(node);
-      balance(node);
+      balance(root);
     }
   }
 
@@ -36,12 +36,13 @@ public class AvlTree {
 
     int balance = node.getBalance();
     if (balance > 1) {
-      if (node.getLeft().getBalance() < 0) {
+      // rotate with null check
+      if (node != null && node.getLeft().getBalance() < 0) {
         node.getLeft().rotateLeft();
       }
       node.rotateRight();
     } else if (balance < -1) {
-      if (node.getRight().getBalance() > 0) {
+      if (node != null && node.getRight().getBalance() > 0) {
         node.getRight().rotateRight();
       }
       node.rotateLeft();
