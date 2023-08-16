@@ -21,6 +21,5 @@ public class AvlMain {
     //     17
 
     System.out.println(root.getHeight());
-    System.out.println(nodeVal15.getRight().getKey());
   }
 }

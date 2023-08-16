@@ -13,7 +13,6 @@ public class AvlNode {
   }
 
   public void add(AvlNode node) {
-    this.height = Math.max(this.height, node.height + 1);
     if (node.key < this.key) {
       if (this.left == null) {
         this.left = node;
@@ -27,7 +26,16 @@ public class AvlNode {
         this.right.add(node);
       }
     }
+    updateHeight();
     node.parent = this;
+  }
+
+  private void updateHeight() {
+    this.height = Math.max(getNodeHeight(this.left), getNodeHeight(this.right)) + 1;
+  }
+
+  private int getNodeHeight(AvlNode node) {
+    return node == null ? -1 : node.height;
   }
 
   public void remove(AvlNode node) {
