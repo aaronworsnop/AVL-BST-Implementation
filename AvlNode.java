@@ -55,6 +55,44 @@ public class AvlNode {
     }
   }
 
+  // Rotate methods
+  public void rotateLeft() {
+    AvlNode newRoot = this.right;
+    newRoot.parent = this.parent;
+    this.right = newRoot.left;
+    if (this.right != null) {
+      this.right.parent = this;
+    }
+    newRoot.left = this;
+    this.parent = newRoot;
+    updateHeight();
+    newRoot.updateHeight();
+  }
+
+  public void rotateRight() {
+    AvlNode newRoot = this.left;
+    newRoot.parent = this.parent;
+    this.left = newRoot.right;
+    if (this.left != null) {
+      this.left.parent = this;
+    }
+    newRoot.right = this;
+    this.parent = newRoot;
+    updateHeight();
+    newRoot.updateHeight();
+  }
+
+  public void rotateLeftToRight() {
+    this.left.rotateLeft();
+    this.rotateRight();
+  }
+
+  public void rotateRightToLeft() {
+    this.right.rotateRight();
+    this.rotateLeft();
+  }
+
+  // Public getters
   public AvlNode getLeft() {
     return this.left;
   }
@@ -73,5 +111,9 @@ public class AvlNode {
 
   public int getHeight() {
     return this.height;
+  }
+
+  public int getBalance() {
+    return getNodeHeight(this.left) - getNodeHeight(this.right);
   }
 }

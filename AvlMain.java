@@ -9,17 +9,18 @@ public class AvlMain {
     tree.add(nodeVal5);
     tree.add(nodeVal15);
 
-    System.out.println(root.getHeight());
+    System.out.println("Height of root: " + root.getHeight());
 
     AvlNode nodeVal17 = new AvlNode(17);
     tree.add(nodeVal17);
 
+    // Before rotation balancing in add method (shouldn't rotate because tree is balanced)
     //  10
     //  /\
     // 5  15
     //     \
     //     17
-
-    System.out.println(root.getHeight());
+    System.out.println("Height of root: " + root.getHeight());
+    System.out.println("Height of node 15: " + root.getRight().getHeight());
   }
 }
