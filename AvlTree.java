@@ -36,16 +36,21 @@ public class AvlTree {
 
     int balance = node.getBalance();
     if (balance > 1) {
-      // rotate with null check
-      if (node != null && node.getLeft().getBalance() < 0) {
-        node.getLeft().rotateLeft();
+      if (node.getRight() != null && node.getRight().getBalance() >= 0) {
+        // Rotate left
+        node.rotateLeft();
       }
-      node.rotateRight();
-    } else if (balance < -1) {
-      if (node != null && node.getRight().getBalance() > 0) {
-        node.getRight().rotateRight();
-      }
+      // Rotate right then left
+      node.getRight().rotateRight();
       node.rotateLeft();
+    } else if (balance < -1) {
+      if (node.getLeft() != null && node.getLeft().getBalance() <= 0) {
+        // Rotate right
+        node.rotateRight();
+      }
+      // Rotate left then right
+      node.getLeft().rotateLeft();
+      node.rotateRight();
     }
   }
 }
