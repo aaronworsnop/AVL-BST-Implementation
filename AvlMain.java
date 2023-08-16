@@ -22,5 +22,11 @@ public class AvlMain {
     //     17
     System.out.println("Height of root: " + root.getHeight());
     System.out.println("Height of node 15: " + root.getRight().getHeight());
+
+    AvlNode nodeVal16 = new AvlNode(16);
+    tree.add(nodeVal16);
+
+    System.out.println("Height of root: " + root.getHeight());
+    System.out.println(tree.getRoot().getKey());
   }
 }

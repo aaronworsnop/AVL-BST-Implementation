@@ -24,6 +24,10 @@ public class AvlTree {
     }
   }
 
+  public AvlNode getRoot() {
+    return root;
+  }
+
   // Balance the tree with rotates
   public void balance(AvlNode node) {
     if (node == null) {
