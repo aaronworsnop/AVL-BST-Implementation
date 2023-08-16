@@ -28,6 +28,10 @@ public class AvlTree {
     return min(root);
   }
 
+  public boolean contains(int data) {
+    return contains(data, root);
+  }
+
   private AvlNode add(int data, AvlNode node) {
     if (node == null) {
       return new AvlNode(data);
@@ -76,6 +80,19 @@ public class AvlTree {
       return node.getData();
     }
     return min(node.getLeft());
+  }
+
+  private boolean contains(int data, AvlNode node) {
+    if (node == null) {
+      return false;
+    }
+    if (data < node.getData()) {
+      return contains(data, node.getLeft());
+    } else if (data > node.getData()) {
+      return contains(data, node.getRight());
+    } else {
+      return true;
+    }
   }
 
   private AvlNode rotate(AvlNode node) {

@@ -68,13 +68,14 @@ public class AvlMain {
 
     // Rajko's test idea
     AvlTree rajkoTree = new AvlTree();
-    for (int i = 0; i < 1000000; i++) {
+    for (int i = 0; i <= 1000000; i++) {
       rajkoTree.add(i);
     }
-    for (int i = 0; i > -1000000; i--) {
+    for (int i = -1; i >= -1000000; i--) {
       rajkoTree.add(i);
     }
     System.out.println(
         "Tree height after adding 2,000,000 elements: " + rajkoTree.getRoot().getHeight());
+    System.out.println("The tree contains 1,000,000?: " + rajkoTree.contains(1000000));
   }
 }
