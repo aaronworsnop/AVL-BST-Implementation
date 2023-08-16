@@ -65,5 +65,16 @@ public class AvlMain {
     // 5 13  17 24
     //       /   \
     //      16   26
+
+    // Rajko's test idea
+    AvlTree rajkoTree = new AvlTree();
+    for (int i = 0; i < 1000000; i++) {
+      rajkoTree.add(i);
+    }
+    for (int i = 0; i > -1000000; i--) {
+      rajkoTree.add(i);
+    }
+    System.out.println(
+        "Tree height after adding 2,000,000 elements: " + rajkoTree.getRoot().getHeight());
   }
 }
