@@ -57,9 +57,8 @@ public class AvlTree {
       } else if (node.getRight() == null) {
         return node.getLeft();
       }
-        node.setData(max(node.getLeft()));
-        node.setLeft(remove(node.getData(), node.getLeft()));
-      }
+      node.setData(max(node.getLeft()));
+      node.setLeft(remove(node.getData(), node.getLeft()));
     }
     updateHeight(node);
     return rotate(node);
@@ -100,19 +99,27 @@ public class AvlTree {
   }
 
   private AvlNode rotateLeft(AvlNode node) {
-    node.getRight().setLeft(node);
-    node.setRight(node.getRight().getLeft());
+    AvlNode right = node.getRight();
+    AvlNode middle = node.getRight().getLeft();
+    right.setLeft(node);
+    node.setRight(middle);
     updateHeight(node);
-    updateHeight(node.getRight());
-    return node.getRight();
+    updateHeight(right);
+    return right;
   }
 
   private AvlNode rotateRight(AvlNode node) {
-    node.getLeft().setRight(node);
-    node.setLeft(node.getLeft().getRight());
+    AvlNode left = node.getLeft();
+    AvlNode middle = node.getLeft().getRight();
+    left.setRight(node);
+    node.setLeft(middle);
     updateHeight(node);
-    updateHeight(node.getLeft());
-    return node.getLeft();
+    updateHeight(left);
+    return left;
+  }
+
+  private int balance(AvlNode node) {
+    return node != null ? height(node.getLeft()) - height(node.getRight()) : 0;
   }
 
   private void updateHeight(AvlNode node) {
